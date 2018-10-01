@@ -9,9 +9,11 @@ public class GmailFetch {
 
     public static void main(String[] args) throws Exception {
 
+        String content[];
+
         Session session = Session.getDefaultInstance(new Properties());
         Store store = session.getStore("imaps");
-        store.connect("imap.googlemail.com", 993, "jphillips31@murraystate.edu", "baseball123~");
+        store.connect("imap.googlemail.com", 993, "EmailHERE@murraystate.edu", "passwordHERE");
         Folder inbox = store.getFolder("INBOX");
         inbox.open(Folder.READ_ONLY);
 
@@ -32,7 +34,10 @@ public class GmailFetch {
             System.out.println(
                     "Date Received: " + message.getSentDate()
                     + "\nEmail Subject: " + message.getSubject()
-                    + "\n" + "Content of email: " + message.getContent() + "\n");                    
+                    + "\n" + "Content of email: \n" + message.getContent() + "\n");
+            String s = message.getContent().toString();
+            String[] ss = s.split(" ");
+            System.out.println(Arrays.toString(ss));
         }
     }
 }
